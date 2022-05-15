@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}All expenses - {% endblock %}
+
+{% block content %}
+
+<h1>Expenses...</h1>
+<br />
+<table class="table table-striped table-hover table-bordered">
+    {% for expense in all_expenses %}
+    <tr>
+        <td>
+            <a href="{% url 'expense' expense.id %}">{{ expense }}</a>
+        </td>
+        <td align="right">
+            <a href="{% url 'edit_expense' expense.id %}" class="btn btn-outline-secondary btn-sm">Edit</a>
+
+            <a href="{% url 'delete_expense' expense.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br />
+<br />
+
+{% endblock %}

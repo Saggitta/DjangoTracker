@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}All incomes - {% endblock %}
+
+{% block content %}
+
+<h1>Incomes...</h1>
+<br />
+<table class="table table-striped table-hover table-bordered">
+    {% for income in all_incomes %}
+    <tr>
+        <td>
+            <a href="{% url 'income' income.id %}">{{ income }}</a>
+        </td>
+        <td align="right">
+            <a href="{% url 'edit_income' income.id %}" class="btn btn-outline-secondary btn-sm">Edit</a>
+
+            <a href="{% url 'delete_income' income.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br />
+<br />
+
+{% endblock %}

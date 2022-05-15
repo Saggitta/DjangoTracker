@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<center>
+    <div class="container ">
+        <div class="row">
+            <div class="col-md">
+                {% if current_balance_uah %}
+                <p>Current Balance UAH</p>
+                <h1>{{current_balance_uah}}</h1>
+                {% endif %}
+                {% if current_balance_usd %}
+                <p>Current Balance USD</p>
+                <h1>{{current_balance_usd}}</h1>
+                {% endif %}
+                {% if total_balance_uah %}
+                <p>Total Balance UAH</p>
+                <h1>{{total_balance_uah}}</h1>
+                {% endif %}
+                {% if total_balance_usd %}
+                <p>Total Balance USD</p>
+                <h1>{{total_balance_usd}}</h1>
+                {% endif %}
+            </div>
+            <div class="col-md">
+                {% if latest_expenses_list %}
+                <div class="card text-dark bg-danger mb-3" style="width: 18rem;">
+                    <div class="card-header">
+                        Spendings
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for expense in latest_expenses_list %}
+                        <li class="list-group-item  bg-danger text-dark"><a
+                                href="{% url 'expense' expense.id %}">{{expense.amount}}
+                                {{expense.currency}} for
+                                {{expense.type}}</a></li>
+                        {% endfor %}
+                        <div class="card-footer bg-transparent border-danger">Total spent: {{total_spent}}</div>
+                    </ul>
+                </div>
+                {% else %}
+                <p>No latest expenses are available.</p>
+                {% endif %}
+            </div>
+            <div class="col-md">
+                {% if latest_income_list %}
+                <div class="card text-dark bg-success mb-3" style="width: 18rem;">
+                    <div class="card-header">
+                        Income
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for income in latest_income_list %}
+                        <li class="list-group-item"><a href="{% url 'income' income.id %}">{{income.amount}}
+                                {{income.currency}} for
+                                {{income.type}}</a></li>
+                        {% endfor %}
+                        <div class="card-footer bg-transparent border-success">Total income: {{total_received}}</div>
+                    </ul>
+                </div>
+                {% else %}
+                <p>No latest incomes are available.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <a href="{% url 'add_income' %}" class="btn btn-success" role="button">Add Income</a>
+    <a href="{% url 'add_expense' %}" class="btn btn-warning" role="button">Add Expense</a>
+</center>
+
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Details {% endblock %}
+
+{% block content %}
+<h1>Income Details</h1>
+<ul>
+    <li>{{ income.amount }}{{ income.currency }}</li>
+    <li>{{ income.date }}</li>
+</ul>
+
+{% endblock %}

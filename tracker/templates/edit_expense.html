@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Edit {{expense.id}} - {% endblock %}
+
+{% block content %}
+<form method="POST">
+
+    {% csrf_token %}
+    {{form.as_p}}
+    <br>
+    <input type="submit" class="btn btn-secondary" id="" value="Update">
+
+</form>
+{% endblock %}
