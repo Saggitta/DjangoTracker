@@ -8,4 +8,4 @@ client = OpenExchangeClient(APP_ID)
 
 def exchange(amount, base="USD", to="UAH"):
     exchanged = client.convert(float(amount), base, to)
-    return exchanged
+    return round(float(exchanged), 2)

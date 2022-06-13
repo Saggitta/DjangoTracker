@@ -1,8 +1,8 @@
-from .api.exchange_rate import exchange
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 
+from .api.exchange_rate import exchange
 from .forms import ExpenseForm, IncomeForm
 from .models import Expense, Income
 
@@ -17,6 +17,7 @@ def index(request):
     total_received_uah = sum(
         income.amount for income in Income.objects.filter(currency="UAH")
     )
+
     total_spent_usd = sum(
         expense.amount for expense in Expense.objects.filter(currency="USD")
     )
@@ -24,17 +25,15 @@ def index(request):
         expense.amount for expense in Expense.objects.filter(currency="UAH")
     )
 
-    total_spent = float(total_spent_uah) + exchange(total_spent_usd)
-    total_received = float(total_received_uah) + exchange(total_received_usd)
+    total_spent = total_spent_uah + exchange(total_spent_usd)
+    total_received = total_received_uah + exchange(total_received_usd)
 
     current_balance_uah = total_received_uah - total_spent_uah
-    current_balance_usd = total_received_usd - total_spent_usd
+    current_balance_usd = float(total_received_usd - total_spent_usd)
 
-    total_balance_uah = round(
-        (exchange(current_balance_usd) + float(current_balance_uah)), 2
-    )
-    total_balance_usd = exchange(current_balance_uah, "UAH", "USD") + float(
-        current_balance_usd
+    total_balance_uah = exchange(current_balance_usd) + current_balance_uah
+    total_balance_usd = (
+        exchange(current_balance_uah, "UAH", "USD") + current_balance_usd
     )
 
     usd = exchange(1)
@@ -53,10 +52,6 @@ def index(request):
         "eur": eur,
     }
     return render(request, "index.html", context)
-
-
-def login(request):
-    return render(request, "login_page.html")
 
 
 def expenses(request):

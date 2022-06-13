@@ -18,7 +18,7 @@ class OpenExchangeClient:
         to_rate = rates[to_currency]
 
         if from_currency == "USD":
-            return round((from_amount * to_rate), 2)
+            return from_amount * to_rate
         else:
             from_in_usd = from_amount / rates[from_currency]
-            return round((from_in_usd * to_rate), 2)
+            return from_in_usd * to_rate
