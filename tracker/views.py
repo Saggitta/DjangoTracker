@@ -8,7 +8,7 @@ from .models import Expense, Income
 
 
 def index(request):
-    latest_expenses_list = Expense.objects.order_by("-date")[:5]
+    latest_expense_list = Expense.objects.order_by("-date")[:5]
     latest_income_list = Income.objects.order_by("-date")[:5]
 
     total_received_usd = sum(
@@ -29,18 +29,18 @@ def index(request):
     total_received = total_received_uah + exchange(total_received_usd)
 
     current_balance_uah = total_received_uah - total_spent_uah
-    current_balance_usd = float(total_received_usd - total_spent_usd)
+    current_balance_usd = total_received_usd - total_spent_usd
 
     total_balance_uah = exchange(current_balance_usd) + current_balance_uah
-    total_balance_usd = (
-        exchange(current_balance_uah, "UAH", "USD") + current_balance_usd
+    total_balance_usd = exchange(current_balance_uah, "UAH", "USD") + float(
+        current_balance_usd
     )
 
     usd = exchange(1)
     eur = exchange(1, base="EUR")
 
     context = {
-        "latest_expenses_list": latest_expenses_list,
+        "latest_expenses_list": latest_expense_list,
         "latest_income_list": latest_income_list,
         "total_spent": total_spent,
         "total_received": total_received,
@@ -104,7 +104,7 @@ def add_income(request):
             messages.error(request, form.errors)
     else:
         form = IncomeForm
-    return render(request, "add_expense.html", {"form": form, "submitted": submitted})
+    return render(request, "add_income.html", {"form": form, "submitted": submitted})
 
 
 def edit_income(request, income_id):

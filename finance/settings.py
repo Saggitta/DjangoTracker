@@ -1,3 +1,5 @@
+import os
+
 """
 Django settings for finance project.
 
@@ -56,7 +58,7 @@ ROOT_URLCONF = "finance.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

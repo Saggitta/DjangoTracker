@@ -1,4 +1,3 @@
-"""models"""
 from django.db import models
 from django.utils import timezone
 
@@ -6,8 +5,6 @@ CURRENCY = [("UAH", "UAH"), ("USD", "USD")]
 
 
 class Income(models.Model):
-    """income"""
-
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     currency = models.CharField(max_length=3, choices=CURRENCY)
     type = models.CharField(max_length=50)
@@ -18,8 +15,6 @@ class Income(models.Model):
 
 
 class Expense(models.Model):
-    """expense"""
-
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     currency = models.CharField(max_length=3, choices=CURRENCY)
     type = models.CharField(max_length=50)
