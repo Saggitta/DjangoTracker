@@ -10,3 +10,6 @@ def test2():
 
 def test3():
     assert False
+
+def test4():
+    pass
