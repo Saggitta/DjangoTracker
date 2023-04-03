@@ -7,3 +7,6 @@ def test1():
 
 def test2():
     pass
+
+def test3():
+    assert False
