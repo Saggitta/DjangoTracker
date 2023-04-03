@@ -4,31 +4,55 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Expense',
+            name="Expense",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('amount', models.IntegerField()),
-                ('date', models.DateField(verbose_name='Expense date')),
-                ('currency', models.CharField(choices=[('1', 'UAH'), ('2', 'USD')], max_length=3)),
-                ('type', models.CharField(max_length=50)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("amount", models.IntegerField()),
+                ("date", models.DateField(verbose_name="Expense date")),
+                (
+                    "currency",
+                    models.CharField(
+                        choices=[("1", "UAH"), ("2", "USD")], max_length=3
+                    ),
+                ),
+                ("type", models.CharField(max_length=50)),
             ],
         ),
         migrations.CreateModel(
-            name='Income',
+            name="Income",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('amount', models.IntegerField()),
-                ('date', models.DateField(verbose_name='Income date')),
-                ('currency', models.CharField(choices=[('1', 'UAH'), ('2', 'USD')], max_length=3)),
-                ('type', models.CharField(max_length=50)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("amount", models.IntegerField()),
+                ("date", models.DateField(verbose_name="Income date")),
+                (
+                    "currency",
+                    models.CharField(
+                        choices=[("1", "UAH"), ("2", "USD")], max_length=3
+                    ),
+                ),
+                ("type", models.CharField(max_length=50)),
             ],
         ),
     ]
